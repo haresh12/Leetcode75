@@ -21,11 +21,12 @@ You must write an algorithm that uses only constant extra space.
 
 /**
  *  THIS ONE IS DONE BUT WILL CONTINUE AGAIN TOMORROW BECAUSE WE NEED TO MODIFY SAME ARRAY
+ *  ALSO WE DON'T HAVE TO RETURN ARRAY WE HAVE TO RETURN MODIFIED ARRAY LENGTH
+ *  ALSO SEE CURRENTLY WE ARE DOING THIS WITH TALKING NEW ARRAY BUT IN FUTURE DO SOME PROBLEM TO MODIFIED IN SAME ARRAY.
  */
 function compression(arr) {
 
 let output = [];
-
 let current = arr[0];
 let total = 1;
 for(let i = 1; i <=arr.length ; i++){  
@@ -46,7 +47,7 @@ for(let i = 1; i <=arr.length ; i++){
 
    }
 }
-return output;
+return output.length;
 }
 
 console.log(compression(["a","a","b","b","c","c","c"]))
