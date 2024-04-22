@@ -51,32 +51,32 @@ console.log(maxSubArrayTimeLimitExceed([-1],1))
 
 /**
  *  FOR NOW ITS FINE BUT ITS COMPLEX WE NEED TO LEARN SLIDING WINDOW PROPER WAY
+ *  FOR SLIDING WINDOW AT THIS TIME ITS ALL ABOUT FORMULA THAT WE CREATE ITS TALKING MORE TIME NEED TO GO DEEP INTO THAT
+ * 
+ *  AND HERE AFTER ONE HOUR THIS IS THE CODE THAT PASSED
  */
 function maxSubArray(arr,k){
 if(arr.length <= k){
    total =  arr.reduce(((curr,total) => total+= curr ),0) 
    return total/k
 }else {
-  let first = arr[0];
-  let total = 0
-  let position = 0;
-  let maxSubArray = Number.MIN_SAFE_INTEGER
-
-  for(let i = 0 ; i < k ; i++){
-    total+=arr[i];
-    position++;
-    if(total/k > maxSubArray){
-        maxSubArray = total/k
+  let total = 0;
+  for(let i  =  0  ; i < k ; i++){
+    total+=arr[i]
+  }
+ let maxSubArray = total;
+ for(let i = k ; i < arr.length ; i++){
+  const current = (total + arr[i] - arr[i -k]);
+    if(current  > maxSubArray){
+      maxSubArray =  current;
     }
-  }
-  for(let i = 1 ; i <= arr.length - k ; i++){
-    total = total + arr[position] - first;
-    if(maxSubArray < total/k)  maxSubArray = total/k
-    first = arr[position]; // bhai yha position aaygea i nhi
-  }
-  return maxSubArray
+    total = current;    
+ }
+ // After doing only adding we can divide them with k that also fine if we think logical
+ return maxSubArray/k 
 }
 
 }
 
-console.log(maxSubArray([4,2,1,3,3],2))
+
+console.log(maxSubArray([7,4,5,8,8,3,9,8,7,6],7))
