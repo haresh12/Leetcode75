@@ -29,6 +29,9 @@ Explanation: "lee", "eet" and "ode" contain 2 vowels.
 
 /**
  * THIS IS THE BEST THING HAPPEND TODAY SUBMITTED IN FIRST TIME ALSO 90 BEATS
+ * 
+ * SEE SLIDING WINDOW CAN MOST OF TIME GIVE YOU TLD ERROR SO THAT THE FIRST THING WE NEED TO CARE ABOUT
+ * 
  */
 function maxVowels(str,k){
 str = str.toLowerCase();
