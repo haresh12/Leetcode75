@@ -11,40 +11,25 @@ Return the leftmost pivot index. If no such index exists, return -1.
  */
 
 
-// WIP
+/**
+ *  THIS ONE I WAS UNABLE TO DO EVEN THE SOLUTION I AM WRITING IS LEARNED FROM OTHER RESOURCES
+ *  BUT SOLUTION IS LIT AND EASY TO UNDERSTAND
+ *  DRY RUN IS ONLY WAY TO UNDERSTAD THIS ONE
+ */
 function pivotIndex(arr){
- let i = 0;
- let j = arr.length - 1;
- let leftTotal = 0;
- let rightTotal = 0;
-
-
-//  while(i <= j){
-//    leftTotal+=arr[i];
-//    i++;
-//    console.log(leftTotal,rightTotal)
-//    if(leftTotal === rightTotal) return i;
-//    rightTotal+=arr[j];
-//    j--;
-//    if(leftTotal === rightTotal) return i;
-
-//  }
- i = 1;
- j = arr.length -1;
- leftTotal = 0;
- rightTotal =0
- while(i < j){
-    leftTotal+=arr[i];
-    i++;
-    console.log(leftTotal,rightTotal)
-    if(leftTotal === rightTotal) return i;
-    rightTotal+=arr[j];
-    j--;
-    if(leftTotal === rightTotal) return i;
- 
-  }
-
- return -1;
+let sum = 0;
+let temp = 0;
+for(let i  = 0 ; i < arr.length ; i++){
+    sum+=arr[i];
 }
 
-console.log(pivotIndex([2,1,-1]))
+for(let j =  0 ; j < arr.length ; j++){
+    // Here see we are removing value from sum 
+    sum-=arr[j]
+    if(temp === sum) return j;
+     temp+= arr[j];
+}
+return -1;
+}
+
+console.log(pivotIndex([-1,-1,-1,-1,-1,0]))
