@@ -20,64 +20,96 @@
    *  NOTHING WORKED OUT AFTER ONE HOUR BAD DAY
    *  
    */
- function pairs(grid){
-  if(allSame(grid)){
-    return grid.length * grid[0].length;
-  }
-  console.log(allSame(grid))
-  let currentRow = ``;
-  let currentCol = ``;
-  let output = {};
-  let tempRow = {};
-  let temCol = {}
-  let ans = 0;
- for(let i = 0 ; i < grid.length ; i++){
-   for(let j = 0 ; j < grid[i].length ; j++){
-     currentRow+=grid[i][j];
-     currentCol+=grid[j][i];  
-   }
-   if(currentCol === currentRow){
-     if(output[currentCol]){
-       output[currentCol]+=1;
-     }else{
-      output[currentCol] = 1;
-     }
-   }else if(currentCol in output){
-    output[currentCol]+=1
-   }else if(currentRow in output){
-    output[currentRow]+=1
-   }else if(currentCol in tempRow){
-    if(output[currentCol]){
-      output[currentCol]+=1;
-    }else{
-     output[currentCol] = 1;
-    }
-   }else if (currentRow in temCol){
-    if(output[currentCol]){
-      output[currentCol]+=1;
-    }else{
-     output[currentCol] = 1;
-    }
-   }
-   else {
-    temCol[currentCol] =  1
-    tempRow[currentRow] = 1
-   }
-   currentCol = '';
-   currentRow = '';
- }
+//  function pairs(grid){
+//   if(allSame(grid)){
+//     return grid.length * grid[0].length;
+//   }
+//   console.log(allSame(grid))
+//   let currentRow = ``;
+//   let currentCol = ``;
+//   let output = {};
+//   let tempRow = {};
+//   let temCol = {}
+//   let ans = 0;
+//  for(let i = 0 ; i < grid.length ; i++){
+//    for(let j = 0 ; j < grid[i].length ; j++){
+//      currentRow+=grid[i][j];
+//      currentCol+=grid[j][i];  
+//    }
+//    if(currentCol === currentRow){
+//      if(output[currentCol]){
+//        output[currentCol]+=1;
+//      }else{
+//       output[currentCol] = 1;
+//      }
+//    }else if(currentCol in output){
+//     output[currentCol]+=1
+//    }else if(currentRow in output){
+//     output[currentRow]+=1
+//    }else if(currentCol in tempRow){
+//     if(output[currentCol]){
+//       output[currentCol]+=1;
+//     }else{
+//      output[currentCol] = 1;
+//     }
+//    }else if (currentRow in temCol){
+//     if(output[currentCol]){
+//       output[currentCol]+=1;
+//     }else{
+//      output[currentCol] = 1;
+//     }
+//    }
+//    else {
+//     temCol[currentCol] =  1
+//     tempRow[currentRow] = 1
+//    }
+//    currentCol = '';
+//    currentRow = '';
+//  }
 
- console.log(output)
-  ans = Object.values(output).reduce((accum,curr) =>  accum = accum + curr , 0)
- return ans;
- }
+//  console.log(output)
+//   ans = Object.values(output).reduce((accum,curr) =>  accum = accum + curr , 0)
+//  return ans;
+//  }
 
- function allSame(grid){
-  for(let i = 0 ; i < grid.length ; i++){
-      for(let j = 0 ; j < grid[i].length ; j++){
-         if(grid[i][j] !== grid[j][i]) return false
-      }
+//  function allSame(grid){
+//   for(let i = 0 ; i < grid.length ; i++){
+//       for(let j = 0 ; j < grid[i].length ; j++){
+//          if(grid[i][j] !== grid[j][i]) return false
+//       }
+//   }
+//   return true
+//  }
+
+ function  pairs(grid) {
+  const columns = new Map();
+    const rows = new Map();
+    let rowNums, colNums, rowHash, colHash;
+    let ans = 0;
+
+    for (let i = 0; i < grid.length; i++) {
+        rowNums = [];
+        colNums = [];
+        
+        for (let j = 0; j < grid[i].length; j++) {
+            rowNums.push(grid[i][j]);
+            colNums.push(grid[j][i]);
+        }
+
+        rowHash = rowNums.join(',');
+        colHash = colNums.join(',');
+        
+        rows.set(rowHash, (rows.get(rowHash) || 0) + 1);
+        columns.set(colHash, (columns.get(colHash) || 0) + 1);
+    }
+
+    for (const [row, value] of rows) {
+        if (columns.has(row)) {
+            ans += value * columns.get(row);
+        }
+    }
+
+    return ans;
   }
-  return true
- }
- console.log(pairs([[13,13],[13,13]] ))
+    
+  console.log(pairs([[13,13],[13,13]]))
