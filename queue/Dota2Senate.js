@@ -41,6 +41,7 @@ And in round 2, the third senator can just announce the victory since he is the 
 function rdGame(str){
     if(str.length  <= 2 ) return str[0] === 'D'? 'Dire' : 'Radiant'; 
  let rStage = 0;
+
  let dStage = 0;
 
  for(let i  = 0 ; i < str.length ; i++){
@@ -61,7 +62,6 @@ function rdGame(str){
          }else dStage++
     }
  }
- console.log(rStage,dStage)
  return rStage > dStage ? 'Radiant' : 'Dire'
 }
 
