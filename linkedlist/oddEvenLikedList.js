@@ -11,39 +11,17 @@ Note that the relative order inside both the even and odd groups should remain a
  */
 
  let head = {
-    val : 1 ,
+    val : 1,
     next : {
-        val : 2,
-        next :  {
-            val : 3,
-            next :{
-                val : 4,
-                next : {
-                    val : 5,
-                    next :  {
-                       val : 6,
-                       next :{
-                        val :  7,
-                        next :{
-                            val : 8,
-                            next : {
-                                val : 9,
-                                next : {
-                                    val : 10,
-                                    next : null
-                                }
-                            }
-                        }
-                       } 
-                    }
-
-                }
-            }
-        }
+        val : 1,
+        next : null
     }
 }
 
 
+/**
+ *  THIS ONE IS DONE BUT WE NEED TO TAKE CARE OF EDGE CASES ALSO HERE WE ARE TAKING EXTRA SPACE BUT MAKE SURE DO WITHOUT THAT
+ */
  function oddEvenList(head){
 
     let temp = head;
@@ -62,7 +40,7 @@ Note that the relative order inside both the even and odd groups should remain a
     let i = 1;
     while(i !== length){
       let temp = {val : curr.val , next : null};
-      if(i%2 !== 0){
+      if(i%2 === 0){
          if(leftHead === null){
             leftHead = currLeftHead = temp
          }else {
@@ -81,8 +59,14 @@ Note that the relative order inside both the even and odd groups should remain a
       i++;
     }
     
-  currLeftHead.next = rightHead  
-  head.next = leftHead;
+   console.log(leftHead);
+   console.log(rightHead) 
+   if(currLeftHead) {
+    currLeftHead.next = rightHead  
+    head.next = leftHead;
+   }else{
+    head.next = rightHead;
+   }
 
 
 return JSON.stringify(head)
