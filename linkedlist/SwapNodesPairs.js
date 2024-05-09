@@ -35,7 +35,7 @@ let head = {
  *   2. What if total number of nodes are in odd length
  *   THIS ONE DONE NICELY DONE IN 15 MIN MAX HARDLY 2 RUNS
  */
-function swapNodes(head){
+function swapNodes(head){   
  if(head === null) return null;
 
  let curr = head;
